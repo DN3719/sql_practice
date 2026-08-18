@@ -1,0 +1,154 @@
+
+<style>
+:root {
+  color-scheme: light;
+  --surface: #F7F7F8;
+  --surface-muted: #EFEFF2;
+  --text: #171717;
+  --text-muted: #52525B;
+  --border: rgba(23, 23, 23, 0.12);
+  --brand: #4B3FE3;
+  --brand-soft: #F2F7FF;
+  --brand-text: #1A1759;
+  --warning: #EFAA17;
+  --danger: #E8463A;
+  --radius: 8px;
+  --radius-card: 12px;
+  --spacer-4: 4px;
+  --spacer-8: 8px;
+  --spacer-12: 12px;
+  --spacer-16: 16px;
+  --spacer-20: 20px;
+  --spacer-24: 24px;
+  --font-sans: "SF Pro Text", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-strong: 600;
+  --text-caption: 12px/18px;
+  --text-body: 14px/20px;
+  --text-title: 16px/24px;
+  --text-code: 13px/20px;
+}
+:root[data-widget-theme="dark"] {
+  color-scheme: dark;
+  --surface: #171717;
+  --surface-muted: #262626;
+  --text: #E5E5E5;
+  --text-muted: #A1A1AA;
+  --border: rgba(229, 229, 229, 0.12);
+  --brand: #6054F1;
+  --brand-soft: #1A1759;
+  --brand-text: #CFD8FF;
+}
+[data-dynamic-ui-widget] { color: var(--text); background: transparent; font: var(--weight-regular) var(--text-body) var(--font-sans); }
+
+.progression { display: flex; align-items: center; justify-content: center; gap: var(--spacer-8); margin-bottom: var(--spacer-20); font: var(--weight-medium) var(--text-caption) var(--font-sans); color: var(--text-muted); }
+.prog-dot { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 999px; background: var(--surface-muted); color: var(--text-muted); font-weight: var(--weight-strong); }
+.prog-dot.active { background: var(--brand); color: #fff; }
+.prog-line { width: 32px; height: 2px; background: var(--border); }
+
+.nf-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--danger); border-radius: var(--radius-card); padding: var(--spacer-20); margin-bottom: var(--spacer-16); }
+.nf-head { display: flex; align-items: center; gap: var(--spacer-12); margin-bottom: var(--spacer-8); }
+.nf-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 38px; height: 26px; padding: 0 var(--spacer-8); border-radius: 999px; background: var(--danger); color: #fff; font: var(--weight-strong) var(--text-caption) var(--font-sans); }
+.nf-rule { font: var(--weight-medium) var(--text-body) var(--font-sans); color: var(--text); }
+.nf-violate { font: var(--weight-regular) var(--text-caption) var(--font-sans); color: var(--text-muted); margin-bottom: var(--spacer-12); line-height: 18px; }
+.nf-violate b { color: var(--danger); font-weight: var(--weight-medium); }
+
+table { border-collapse: collapse; width: 100%; font: var(--weight-regular) var(--text-code) var(--font-mono); margin-bottom: var(--spacer-12); }
+th, td { border: 1px solid var(--border); padding: var(--spacer-4) var(--spacer-8); text-align: left; white-space: nowrap; }
+th { background: var(--surface-muted); color: var(--text-muted); font-weight: var(--weight-medium); }
+td { color: var(--text); }
+.cell-bad { color: var(--danger); font-weight: var(--weight-medium); }
+.cell-key { color: var(--brand); font-weight: var(--weight-medium); }
+
+.conseq-list { display: flex; flex-direction: column; gap: var(--spacer-8); margin-top: var(--spacer-12); }
+.conseq-item { display: flex; align-items: flex-start; gap: var(--spacer-8); padding: var(--spacer-8) var(--spacer-12); background: var(--surface-muted); border-radius: var(--radius); }
+.conseq-num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 999px; background: var(--danger); color: #fff; font: var(--weight-strong) 11px var(--font-sans); flex-shrink: 0; margin-top: 1px; }
+.conseq-text { font: var(--weight-regular) var(--text-caption) var(--font-sans); color: var(--text); line-height: 18px; }
+.conseq-text b { color: var(--danger); font-weight: var(--weight-medium); }
+
+.fix-row { display: flex; align-items: flex-start; gap: var(--spacer-8); margin-top: var(--spacer-12); padding: var(--spacer-8) var(--spacer-12); background: var(--brand-soft); border-radius: var(--radius); }
+.fix-label { font: var(--weight-medium) var(--text-caption) var(--font-sans); color: var(--brand-text); flex-shrink: 0; }
+.fix-text { font: var(--weight-regular) var(--text-caption) var(--font-sans); color: var(--brand-text); line-height: 18px; }
+.fix-text b { color: var(--brand); font-weight: var(--weight-medium); }
+</style>
+
+<div data-dynamic-ui-widget data-template="explanation-panel" data-mounted="true" style="padding: var(--spacer-20);">
+
+  <div class="progression">
+    <span class="prog-dot active">1</span>
+    <span>字段不原子</span>
+    <span class="prog-line"></span>
+    <span class="prog-dot active">2</span>
+    <span>部分依赖</span>
+    <span class="prog-line"></span>
+    <span class="prog-dot active">3</span>
+    <span>传递依赖</span>
+  </div>
+
+  <!-- 1NF 违反 -->
+  <div class="nf-card">
+    <div class="nf-head">
+      <span class="nf-badge">1NF</span>
+      <span class="nf-rule">违反：字段可再分（非原子值）</span>
+    </div>
+    <div class="nf-violate">一个字段里塞了多个值，如「课程」填「数学,英语」</div>
+    <table>
+      <tr><th>学号</th><th>姓名</th><th>课程</th></tr>
+      <tr><td class="cell-key">001</td><td>张三</td><td class="cell-bad">数学,英语</td></tr>
+      <tr><td class="cell-key">002</td><td>李四</td><td class="cell-bad">物理</td></tr>
+    </table>
+    <div class="conseq-list">
+      <div class="conseq-item"><span class="conseq-num">1</span><span class="conseq-text"><b>查询困难：</b>无法用 WHERE 课程='数学' 精确匹配，需 LIKE 或字符串解析</span></div>
+      <div class="conseq-item"><span class="conseq-num">2</span><span class="conseq-text"><b>无法建索引：</b>多值字段无法对单科建索引，查询效率低</span></div>
+      <div class="conseq-item"><span class="conseq-num">3</span><span class="conseq-text"><b>更新困难：</b>张三退选数学，需解析字符串改「英语」，易出错</span></div>
+    </div>
+    <div class="fix-row"><span class="fix-label">修复</span><span class="fix-text">拆成多行，每行一科 → <b>一字段一值</b></span></div>
+  </div>
+
+  <!-- 2NF 违反 -->
+  <div class="nf-card">
+    <div class="nf-head">
+      <span class="nf-badge">2NF</span>
+      <span class="nf-rule">违反：非主属性部分依赖主键（复合主键中只依赖一部分）</span>
+    </div>
+    <div class="nf-violate">主键为 (学号,课程)，但「姓名」只依赖学号，不依赖课程</div>
+    <table>
+      <tr><th>学号</th><th>课程</th><th>姓名</th><th>成绩</th></tr>
+      <tr><td class="cell-key">001</td><td class="cell-key">数学</td><td class="cell-bad">张三</td><td>90</td></tr>
+      <tr><td class="cell-key">001</td><td class="cell-key">英语</td><td class="cell-bad">张三</td><td>85</td></tr>
+      <tr><td class="cell-key">002</td><td class="cell-key">物理</td><td class="cell-bad">李四</td><td>88</td></tr>
+    </table>
+    <div class="conseq-list">
+      <div class="conseq-item"><span class="conseq-num">1</span><span class="conseq-text"><b>数据冗余：</b>张三选两门课，姓名存了两遍</span></div>
+      <div class="conseq-item"><span class="conseq-num">2</span><span class="conseq-text"><b>更新异常：</b>张三改名要改多行，漏改则不一致</span></div>
+      <div class="conseq-item"><span class="conseq-num">3</span><span class="conseq-text"><b>插入异常：</b>学生未选课时无法录入姓名（主键课程为空）</span></div>
+      <div class="conseq-item"><span class="conseq-num">4</span><span class="conseq-text"><b>删除异常：</b>删某课程连学生姓名一起丢</span></div>
+    </div>
+    <div class="fix-row"><span class="fix-label">修复</span><span class="fix-text">拆成 学生(学号,姓名) + 选课(学号,课程,成绩) → <b>非主属性完全依赖主键</b></span></div>
+  </div>
+
+  <!-- 3NF 违反 -->
+  <div class="nf-card">
+    <div class="nf-head">
+      <span class="nf-badge">3NF</span>
+      <span class="nf-rule">违反：非主属性传递依赖主键（A→B→C）</span>
+    </div>
+    <div class="nf-violate">学号→系号→系名，系名间接依赖学号</div>
+    <table>
+      <tr><th>学号</th><th>姓名</th><th>系号</th><th>系名</th><th>系主任</th></tr>
+      <tr><td class="cell-key">001</td><td>张三</td><td>D01</td><td class="cell-bad">计算机</td><td class="cell-bad">王教授</td></tr>
+      <tr><td class="cell-key">002</td><td>李四</td><td>D01</td><td class="cell-bad">计算机</td><td class="cell-bad">王教授</td></tr>
+      <tr><td class="cell-key">003</td><td>王五</td><td>D02</td><td class="cell-bad">数学</td><td class="cell-bad">李教授</td></tr>
+    </table>
+    <div class="conseq-list">
+      <div class="conseq-item"><span class="conseq-num">1</span><span class="conseq-text"><b>数据冗余：</b>同系多个学生，系名系主任重复存储</span></div>
+      <div class="conseq-item"><span class="conseq-num">2</span><span class="conseq-text"><b>更新异常：</b>系改名要改该系所有学生行，漏改则不一致</span></div>
+      <div class="conseq-item"><span class="conseq-num">3</span><span class="conseq-text"><b>插入异常：</b>新系无学生，学号为空主键无法录入系信息</span></div>
+      <div class="conseq-item"><span class="conseq-num">4</span><span class="conseq-text"><b>删除异常：</b>删某系唯一学生，系信息被连带删除</span></div>
+    </div>
+    <div class="fix-row"><span class="fix-label">修复</span><span class="fix-text">拆成 学生(学号,姓名,系号) + 系(系号,系名,系主任) → <b>非主属性直接依赖主键</b></span></div>
+  </div>
+
+</div>
